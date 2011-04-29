@@ -8,6 +8,7 @@ source ~/.git-completion.bash
 alias ll="ls -la"
 alias cd..="cd .."
 alias c="clear"
+alias ctree="tree -C"
 
 # Env
 export PAGER=most
@@ -18,3 +19,5 @@ parse_git_branch() {
 }
  
 export PS1='\[\e[1;37m\][\[\e[1;35m\]\u\[\e[1;37m\]@\[\e[1;32m\]\h\[\e[1;37m\]:\[\e[1;36m\]\w\[\e[1;33m\]$(parse_git_branch)\[\e[1;37m\]]$ \[\e[0m\]'
+
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
