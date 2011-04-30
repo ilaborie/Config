@@ -1,3 +1,12 @@
+# General
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.log
+
 # Java
 .class
 
@@ -8,13 +17,16 @@ target/
 .project
 .metadata
 bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
 local.properties
 .classpath
 .settings/
 .loadpath
+
+
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/

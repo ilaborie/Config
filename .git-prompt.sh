@@ -323,12 +323,12 @@ set_shell_label() {
 
         if [[ -n $id  || -n $host ]] ;   then
                 [[ -n $id  &&  -n $host ]]  &&  at='@'  || at=''
-                color_who_where="${id}${host:+$host_color$at$host}${tty:+ $tty}"
+                color_who_where="${id}${host:+$colors_reset$at$host_color$host}${tty:+ $tty}"
                 plain_who_where="${id}$at$host"
 
                 # add trailing " "
-                color_who_where="$color_who_where "
-                plain_who_where="$plain_who_where "
+                color_who_where="$color_who_where"
+                plain_who_where="$plain_who_where"
 
                 # if root then make it root_color
                 if [ "$id" == "root" ]  ; then
@@ -610,10 +610,10 @@ parse_vcs_status() {
         fi
 
 
-        head_local="$vcs_color(${vcs_info}$vcs_color${file_list}$vcs_color)"
+        head_local="${vcs_info}$vcs_color${file_list}"
 
         ### fringes
-        head_local="${head_local+$vcs_color$head_local }"
+        head_local="${yellow}➤$colors_reset ${head_local+$vcs_color$head_local}"
         #above_local="${head_local+$vcs_color$head_local\n}"
         #tail_local="${tail_local+$vcs_color $tail_local}${dir_color}"
  }
@@ -671,7 +671,7 @@ prompt_command_function() {
         eval "${cwd_cmd/\\/cwd=\\\\}"
 
         # PS1="$colors_reset$rc$head_local$color_who_where$dir_color$cwd$tail_local$dir_color$prompt_char $colors_reset"
-        PS1="$colors_reset$rc$head_local$colors_reset[$color_who_where]$dir_color$cwd$tail_local$dir_color$colors_reset$prompt_char "
+        PS1="$colors_reset[$color_who_where]$dir_color$cwd$tail_local $colors_reset$rc$head_local$colors_reset$prompt_char "
 
         unset head_local tail_local pwd
  }
