@@ -1,8 +1,9 @@
-[user]
-	name = Igor Laborie
-	email = ilaborie@gmail.com
 [color]
 	ui = auto
+	branch = auto
+[user]
+	email = i.laborie@akka.eu
+	name = Igor
 [alias]
     amend = commit --amend
     st = status
@@ -13,9 +14,9 @@
     dic = diff --cached
     diffstat = diff --stat
     lc = !git oneline ORIG_HEAD.. --stat --no-merges
-    addm = !git-ls-files -m -z | xargs -0 git-add && git status                     # ajouter les fichiers modifiŽs.
+    addm = !git-ls-files -m -z | xargs -0 git-add && git status                     # ajouter les fichiers modifiÂŽs.
     addu = !git-ls-files -o --exclude-standard -z | xargs -0 git-add && git status  # ajouter les fichiers inconnus.
-    rmm  = !git ls-files -d -z | xargs -0 git-rm && git status                      # supprimer les fichiers marquŽs comme effacŽs.
+    rmm  = !git ls-files -d -z | xargs -0 git-rm && git status                      # supprimer les fichiers marquÂŽs comme effacÂŽs.
     st = status
     df = diff
     co = checkout
