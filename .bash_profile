@@ -4,6 +4,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Add Git AutoCompletion
 source ~/.git-completion.bash
 
+# Add Maven AutoCompletion
+source ~/.mvn-completion.bash
+
 export MANPATH=/opt/local/share/man:$MANPATH
 export PAGER=most
 
