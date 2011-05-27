@@ -12,6 +12,9 @@ _mvn()
                   idea:idea -DartifactId= -DgroupId= -Dmaven.test.skip=true \
                   -Declipse.workspace= -DarchetypeArtifactId= \
                   -Dwtpversion=2.0 -DskipTests \
+                  dependency:tree dependency:analyze \
+                  hibernate3:hbm2ddl \
+                  archetype:generate \
                   netbeans-freeform:generate-netbeans-project \
                   tomcat:run tomcat:run-war tomcat:deploy"
            COMPREPLY=()
