@@ -5,17 +5,16 @@ _mvn()
 {
   local cmds cur colonprefixes
 
-      cmds="clean validate compile test package integration-test \
+      cmds="clean validate compile test package \
                   verify install deploy test-compile site generate-sources \
                   process-sources generate-resources process-resources \
                   eclipse:eclipse eclipse:add-maven-repo eclipse:clean \
-                  idea:idea -DartifactId= -DgroupId= -Dmaven.test.skip=true \
+                  -DartifactId= -DgroupId= -Dmaven.test.skip=true \
                   -Declipse.workspace= -DarchetypeArtifactId= \
                   -Dwtpversion=2.0 -DskipTests \
                   dependency:tree dependency:analyze \
                   hibernate3:hbm2ddl \
                   archetype:generate \
-                  netbeans-freeform:generate-netbeans-project \
                   tomcat:run tomcat:run-war tomcat:deploy"
            COMPREPLY=()
            cur=${COMP_WORDS[COMP_CWORD]}
