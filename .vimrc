@@ -124,7 +124,7 @@ inoremap <F10> <Esc> :call ToggleSpell()<cr>
 vnoremap <F10> <Esc> :call ToggleSpell()<cr>
 
 " place le curseur là où il était lors de la fermeture du fichier
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+" au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 " la touche backspace peut supprimer tout et n'importe quoi, dans tous les modes
 set backspace=2
@@ -186,7 +186,7 @@ nnoremap <silent> <Space><Space> :silent noh<Bar>echo<CR>
 
 " expliciter les espaces insécables
 " set listchars=nbsp:·,tab:>-
-set list
+" set list
 
 set wc=<TAB>
 

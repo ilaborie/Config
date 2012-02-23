@@ -61,7 +61,12 @@ export JBOSS_CONF="production"
 
 # PostgreSQL
 export PG_HOME="/usr/local/pgsql"
+export PGDATA="/usr/local/pgsql/data/"
 # export PG_HOME="/Library/PostgreSQL8"
+
+# MySQL
+alias mysql=/usr/local/mysql/bin/mysql
+alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
 # Tomcat
 export CATALINA_HOME="/Users/laborie/Documents/Servers/Tomcat/tomcat"
