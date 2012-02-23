@@ -80,11 +80,75 @@ export PATH="$PG_HOME/bin:$MAVEN_HOME/bin:$PG_HOME/bin:$PLAY_HOME/:$PATH"
 # Emplacement du chromedriver
 export CHOME_WEB_DRIVER="/usr/local/bin/chromedriver"
 
+##################
 # Configure prompt
-[[ $- == *i* ]]   &&   . ~/.git-prompt.sh
+# see https://github.com/nicolargo/dotfiles/blob/master/_bashrc.d/bashrc_prompt
+
+# Colors
+NoColor="\033[0m"
+Cyan="\033[0;36m"
+Green="\033[0;32m"
+Red="\033[0;31m" 
+Yellow="\033[0;33m"
+
+# Chars
+RootPrompt="#"
+NonRootPrompt="$"
+
+# Contextual prompt
+prompt() {
+	USERNAME=`whoami`
+	HOSTNAME=`hostname`
+	CURRENTPATH=`pwd | sed "s|$HOME|~|g"`
+
+	LEFTPROMPT=$Cyan$USERNAME@$HOSTNAME":"$Yellow$CURRENTPATH
+
+	RIGHTPROMPT=""
+	GITSTATUS=$(git status 2> /dev/null)
+	#echo $GITSTATUS > /dev/null 2>&1 
+	if [ $? -eq 0 ]; then
+		echo $GITSTATUS | grep "not staged" > /dev/null 2>&1
+		if [ $? -eq 0 ]; then
+			RIGHTPROMPT=$Red
+		else
+			RIGHTPROMPT=$Green
+		fi
+		BRANCH=`git describe --contains --all HEAD`
+		RIGHTPROMPT=$RIGHTPROMPT" [Git branch "$BRANCH"]"
+	fi
+	RIGHTPROMPT=$RIGHTPROMPT$NoColor
+
+	echo -e -n "\n"$LEFTPROMPT
+	echo -e $RIGHTPROMPT
+}
+
+# Define PROMPT_COMMAND if not already defined (fix: Modifying title on SSH connections)
+if [ -z "$PROMPT_COMMAND" ]; then
+	case $TERM in
+	xterm*)
+		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+	;;
+	screen)
+		PROMPT_COMMAND='printf "\033]0;%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+	;;
+	esac
+fi
+ 
+# Main prompt
+PROMPT_COMMAND="prompt;$PROMPT_COMMAND"
+ 
+if [ $EUID -ne 0 ]; then
+	PS1=$NonRootPrompt" "
+else
+	PS1=$RootPrompt" "
+fi
+####################
+
 
 # Configure proxy
-source ~/.bash_proxy.sh
+if [ -f  ~/.bash_proxy.sh ]; then
+	source ~/.bash_proxy.sh
+fi
 
 # Go to HOME
 cd $HOME 
