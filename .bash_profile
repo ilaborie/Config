@@ -11,6 +11,7 @@ source ~/.mvn-completion.bash
 
 export MANPATH=/opt/local/share/man:$MANPATH
 export PAGER=most
+export SVN_EDITOR=vim
 
 # Alias
 alias ll='ls -lGAhF'
