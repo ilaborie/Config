@@ -153,3 +153,6 @@ fi
 
 # Go to HOME
 cd $HOME 
+
+echo " "
+fortune
