@@ -41,6 +41,7 @@ if which mvn &> /dev/null; then
                         -e "s/\(\[WARN\].*\)/${e}${warn}\1${e}0m/g" \
 						-e "s/\(\[WARNING].*\)/${e}${warn}\1${e}0m/g" \
                         -e "s/\(\[INFO\].*\)/${e}${info}\1${e}0m/g" \
+                        -e "s/\(\[INFO \].*\)/${e}${info}\1${e}0m/g" \
                         -e "s/\(\[DEBUG\].*\)/${e}${debug}\1${e}0m/g" \
                         -e "s/\(\[ERROR\].*\)/${e}${error}\1${e}0m/g"
         }
@@ -49,6 +50,28 @@ if which mvn &> /dev/null; then
         alias mvn="color_maven"
 fi
 
+
+# Colorize ElasticSerach Output
+if which elasticsearch &> /dev/null; then
+        color_elasticsearch()
+        {
+                local e=$(echo -e "\x1b")[
+                local highlight="1;32m"
+                local debug="1;32m"
+                local info="1;36m"
+                local warn="1;33m"
+                local error="1;31m"
+
+                `which elasticsearch` $* | sed  \
+                        -e "s/\(\[WARN\].*\)/${e}${warn}\1${e}0m/g" \
+						-e "s/\(\[WARNING].*\)/${e}${warn}\1${e}0m/g" \
+                        -e "s/\(\[INFO\].*\)/${e}${info}\1${e}0m/g" \
+                        -e "s/\(\[INFO \].*\)/${e}${info}\1${e}0m/g" \
+                        -e "s/\(\[DEBUG\].*\)/${e}${debug}\1${e}0m/g" \
+                        -e "s/\(\[ERROR\].*\)/${e}${error}\1${e}0m/g"
+        }
+        alias elasticsearch="color_elasticsearch"
+fi
 
 # JBoss
 export JBOSS_EAP_5="/Users/laborie/Documents/Servers/JBoss/JBoss-EAP-5.1.0/jboss-eap-5.1/jboss-as"
